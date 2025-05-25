@@ -80,7 +80,7 @@ export class CustomerComponent implements OnInit, AfterViewInit {
       if (result) {
         if (customer) {
           this.customerService
-            .update(customer)
+            .update(result)
             .pipe(
               catchError((err) => {
                 this.error = 'Failed to update customer.';

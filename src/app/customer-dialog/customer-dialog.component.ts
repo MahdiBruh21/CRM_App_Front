@@ -28,6 +28,11 @@ export class CustomerDialogComponent {
 
   onSave(): void {
     if (this.customerForm.valid) {
+      const updatedCustomer = {
+        ...this.customerForm.value,
+        profile: this.data.profile, // preserve nested profile object
+        // Add other nested objects if needed
+      };
       this.dialogRef.close(this.customerForm.value);
     }
   }
