@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>{{ data.prospect?.id ? "Edit" : "Add" }} Prospect</h2>
+<mat-dialog-content>
+  <form [formGroup]="prospectForm">
+    <!-- Name Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="nameInput">Name</mat-label>
+      <input matInput id="nameInput" formControlName="name" required />
+      <mat-error *ngIf="prospectForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="emailInput">Email</mat-label>
+      <input
+        matInput
+        id="emailInput"
+        type="email"
+        formControlName="email"
+        required
+      />
+      <mat-error *ngIf="prospectForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="prospectForm.get('email')?.hasError('email')">
+        Please enter a valid email
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Status Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="statusSelect">Status</mat-label>
+      <mat-select id="statusSelect" formControlName="prospectStatus" required>
+        <mat-option value="NEW">New</mat-option>
+        <mat-option value="CONTACTED">Contacted</mat-option>
+        <mat-option value="INTERESTED">Interested</mat-option>
+        <mat-option value="NOT_INTERESTED">Not Interested</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="prospectForm.get('prospectStatus')?.hasError('required')"
+      >
+        Status is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Type Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="typeSelect">Prospection Type</mat-label>
+      <mat-select id="typeSelect" formControlName="prospectionType" required>
+        <mat-option value="FACEBOOK">Facebook</mat-option>
+        <mat-option value="INSTAGRAM">Instagram</mat-option>
+        <mat-option value="WHATSAPP">Whatsapp</mat-option>
+        <mat-option value="OTHER">Other</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="prospectForm.get('prospectionType')?.hasError('required')"
+      >
+        Type is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Details Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="detailsTextarea">Details</mat-label>
+      <textarea
+        matInput
+        id="detailsTextarea"
+        formControlName="prospectDetails"
+        required
+      ></textarea>
+      <mat-error
+        *ngIf="prospectForm.get('prospectDetails')?.hasError('required')"
+      >
+        Details are required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!prospectForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

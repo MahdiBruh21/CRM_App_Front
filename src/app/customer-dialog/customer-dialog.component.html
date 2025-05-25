@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data.id ? "Edit" : "Add" }} Customer</h2>
+<mat-dialog-content>
+  <form [formGroup]="customerForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Customer Type</mat-label>
+      <mat-select formControlName="customerType">
+        <mat-option value="INDIVIDUAL">Individual</mat-option>
+        <mat-option value="BUSINESS">Business</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!customerForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

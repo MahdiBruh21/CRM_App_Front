@@ -1,0 +1,19 @@
+.content {
+  padding: 20px;
+  margin-top: 64px; /* Account for toolbar */
+  margin-left: 200px; /* Account for sidebar */
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+button {
+  margin: 10px 0;
+}
+
+mat-table {
+  width: 100%;
+  margin-top: 20px;
+}

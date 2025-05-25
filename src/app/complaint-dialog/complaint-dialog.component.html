@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>{{ data.complaint?.id ? "Edit" : "Add" }} Complaint</h2>
+<mat-dialog-content>
+  <form [formGroup]="complaintForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Customer</mat-label>
+      <mat-select formControlName="customerId" required>
+        <mat-option
+          *ngFor="let customer of data.customers"
+          [value]="customer.id"
+        >
+          {{ customer.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="complaintForm.get('customerId')?.hasError('required')">
+        Customer is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Complaint Type</mat-label>
+      <mat-select formControlName="complaintType" required>
+        <mat-option value="TECHNICAL">Technical</mat-option>
+        <mat-option value="BILLING">Billing</mat-option>
+        <mat-option value="GENERAL">General</mat-option>
+        <mat-option value="SERVICE">Service</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="complaintForm.get('complaintType')?.hasError('required')"
+      >
+        Type is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Complaint Status</mat-label>
+      <mat-select formControlName="complaintStatus" required>
+        <mat-option value="OPEN">Open</mat-option>
+        <mat-option value="IN_PROGRESS">In Progress</mat-option>
+        <mat-option value="CLOSED">Closed</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="complaintForm.get('complaintStatus')?.hasError('required')"
+      >
+        Status is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error *ngIf="complaintForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!complaintForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

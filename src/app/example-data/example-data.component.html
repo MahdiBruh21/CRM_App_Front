@@ -1,0 +1,11 @@
+<p>Component is working!</p>
+
+<div *ngIf="data && data.length">
+  <h2>Data from Backend:</h2>
+  <ul>
+    <li *ngFor="let item of data">{{ item }}</li>
+  </ul>
+</div>
+<div *ngIf="!data || !data.length">
+  <p>No data available.</p>
+</div>

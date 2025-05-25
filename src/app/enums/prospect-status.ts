@@ -1,0 +1,6 @@
+export enum ProspectStatus {
+  NEW = 'NEW',
+  CONTACTED = 'CONTACTED',
+  INTERESTED = 'INTERESTED',
+  NOT_INTERESTED = 'NOT_INTERESTED',
+}

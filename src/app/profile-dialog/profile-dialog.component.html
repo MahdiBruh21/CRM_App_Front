@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Edit Social Links</h2>
+<mat-dialog-content>
+  <form [formGroup]="profileForm">
+    <!-- Customer Field (disabled for editing) -->
+    <mat-form-field appearance="fill">
+      <mat-label for="customerField">Customer</mat-label>
+      <input
+        matInput
+        id="customerField"
+        [value]="data.profile.customer.name"
+        disabled
+      />
+    </mat-form-field>
+
+    <!-- Facebook Link Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="facebookLink">Facebook Link</mat-label>
+      <input
+        matInput
+        id="facebookLink"
+        formControlName="facebookLink"
+        placeholder="https://facebook.com/username"
+      />
+    </mat-form-field>
+
+    <!-- Instagram Link Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="instagramLink">Instagram Link</mat-label>
+      <input
+        matInput
+        id="instagramLink"
+        formControlName="instagramLink"
+        placeholder="https://instagram.com/username"
+      />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!profileForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

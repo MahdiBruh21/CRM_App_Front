@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <span>Sphynx</span>
+  <span class="spacer"></span>
+  <div class="user-info" *ngIf="isAuthenticated$ | async; else loginButton">
+    <span *ngIf="user$ | async as user">Welcome, {{ user }}</span>
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #loginButton>
+    <button mat-button (click)="login()">Login</button>
+  </ng-template>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="side"
+    opened
+    [fixedInViewport]="true"
+    fixedTopGap="64"
+    *ngIf="isAuthenticated$ | async"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLink="/customers" routerLinkActive="active"
+        >Customers</a
+      >
+      <a mat-list-item routerLink="/complaints" routerLinkActive="active"
+        >Complaints</a
+      >
+      <a mat-list-item routerLink="/orders" routerLinkActive="active">Orders</a>
+      <a mat-list-item routerLink="/profiles" routerLinkActive="active"
+        >Profiles</a
+      >
+      <a mat-list-item routerLink="/prospects" routerLinkActive="active"
+        >Prospects</a
+      >
+      <a mat-list-item routerLink="/prospections" routerLinkActive="active"
+        >Prospections</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

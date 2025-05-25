@@ -1,0 +1,73 @@
+<div class="table-container">
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!isAuthenticated">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="authService.redirectToLogin()"
+    >
+      Log In
+    </button>
+  </div>
+
+  <div *ngIf="isAuthenticated">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      Add Prospection
+    </button>
+
+    <table mat-table [dataSource]="prospections" class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let prospection">{{ prospection.id }}</td>
+      </ng-container>
+
+      <!-- Prospect Column -->
+      <ng-container matColumnDef="prospect">
+        <th mat-header-cell *matHeaderCellDef>Prospect</th>
+        <td mat-cell *matCellDef="let prospection">
+          {{ prospection.prospect?.name || "N/A" }}
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="prospectionStatus">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let prospection">
+          {{ prospection.prospectionStatus | titlecase }}
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let prospection">
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="openDialog(prospection)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteProspection(prospection.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *ngIf="prospections.data.length === 0">
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          No prospections available
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

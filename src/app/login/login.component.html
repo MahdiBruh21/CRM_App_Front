@@ -1,0 +1,6 @@
+<div class="login-container">
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <button mat-raised-button color="primary" (click)="login()">
+    Login with Keycloak
+  </button>
+</div>

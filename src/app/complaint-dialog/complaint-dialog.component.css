@@ -1,0 +1,5 @@
+/* src/app/components/complaint/complaint-dialog/complaint-dialog.component.css */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}

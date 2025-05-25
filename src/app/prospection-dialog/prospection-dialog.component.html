@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>
+  {{ data.prospection?.id ? "Edit" : "Add" }} Prospection
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="prospectionForm">
+    <!-- Prospect Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="prospectSelect">Prospect</mat-label>
+      <mat-select id="prospectSelect" formControlName="prospectId" required>
+        <mat-option
+          *ngFor="let prospect of data.prospects"
+          [value]="prospect.id"
+        >
+          {{ prospect.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="prospectionForm.get('prospectId')?.hasError('required')"
+      >
+        Prospect is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Status Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="statusSelect">Status</mat-label>
+      <mat-select
+        id="statusSelect"
+        formControlName="prospectionStatus"
+        required
+      >
+        <mat-option value="INITIAL">Initial</mat-option>
+        <mat-option value="FOLLOW_UP">Follow Up</mat-option>
+        <mat-option value="CLOSED">Closed</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="prospectionForm.get('prospectionStatus')?.hasError('required')"
+      >
+        Status is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Details Field -->
+    <mat-form-field appearance="fill">
+      <mat-label for="detailsTextarea">Details</mat-label>
+      <textarea
+        matInput
+        id="detailsTextarea"
+        formControlName="prospectionDetails"
+        required
+      ></textarea>
+      <mat-error
+        *ngIf="prospectionForm.get('prospectionDetails')?.hasError('required')"
+      >
+        Details are required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!prospectionForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

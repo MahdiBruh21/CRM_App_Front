@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>{{ data.order?.id ? "Edit" : "Add" }} Order</h2>
+<mat-dialog-content>
+  <form [formGroup]="orderForm">
+    <!-- Customer Field with proper label association -->
+    <mat-form-field appearance="fill">
+      <mat-label for="customerSelect">Customer</mat-label>
+      <mat-select id="customerSelect" formControlName="customerId" required>
+        <mat-option
+          *ngFor="let customer of data.customers"
+          [value]="customer.id"
+        >
+          {{ customer.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('customerId')?.hasError('required')">
+        Customer is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Order Date Field with proper label association -->
+    <mat-form-field appearance="fill">
+      <mat-label for="orderDateInput">Order Date</mat-label>
+      <input
+        matInput
+        id="orderDateInput"
+        [matDatepicker]="picker"
+        formControlName="orderDate"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="orderForm.get('orderDate')?.hasError('required')">
+        Order date is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Price Field with proper label association -->
+    <mat-form-field appearance="fill">
+      <mat-label for="priceInput">Price</mat-label>
+      <input
+        matInput
+        id="priceInput"
+        type="number"
+        formControlName="price"
+        required
+      />
+      <mat-error *ngIf="orderForm.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="orderForm.get('price')?.hasError('min')">
+        Price must be positive
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Order Status Field with proper label association -->
+    <mat-form-field appearance="fill">
+      <mat-label for="statusSelect">Order Status</mat-label>
+      <mat-select id="statusSelect" formControlName="orderStatus" required>
+        <mat-option value="PENDING">Pending</mat-option>
+        <mat-option value="CONFIRMED">Confirmed</mat-option>
+        <mat-option value="SHIPPED">Shipped</mat-option>
+        <mat-option value="DELIVERED">Delivered</mat-option>
+        <mat-option value="CANCELED">Canceled</mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('orderStatus')?.hasError('required')">
+        Status is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Order Details Field with proper label association -->
+    <mat-form-field appearance="fill">
+      <mat-label for="detailsTextarea">Order Details</mat-label>
+      <textarea
+        matInput
+        id="detailsTextarea"
+        formControlName="orderDetails"
+        required
+      ></textarea>
+      <mat-error *ngIf="orderForm.get('orderDetails')?.hasError('required')">
+        Details are required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!orderForm.valid"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
