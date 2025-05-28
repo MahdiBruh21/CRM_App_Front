@@ -1,4 +1,14 @@
 <div class="table-container">
+  <div class="header-row">
+    <h2>Complaints</h2>
+
+    <div *ngIf="isAuthenticated">
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        Add Complaint
+      </button>
+    </div>
+  </div>
+
   <div *ngIf="error" class="error">{{ error }}</div>
 
   <div *ngIf="!isAuthenticated">
@@ -12,10 +22,8 @@
   </div>
 
   <div *ngIf="isAuthenticated">
-    <button mat-raised-button color="primary" (click)="openDialog()">
-      Add Complaint
-    </button>
     <table mat-table [dataSource]="complaints" class="mat-elevation-z8">
+      <!-- Your mat-table columns and rows here -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let complaint">{{ complaint.id }}</td>
@@ -54,14 +62,14 @@
         <td mat-cell *matCellDef="let complaint">
           <button
             mat-icon-button
-            color="primary"
+            class="icon-edit"
             (click)="openDialog(complaint)"
           >
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
-            color="warn"
+            class="icon-delete"
             (click)="deleteComplaint(complaint.id)"
           >
             <mat-icon>delete</mat-icon>

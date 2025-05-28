@@ -1,21 +1,27 @@
 <div class="table-container">
-  <div *ngIf="error" class="error">{{ error }}</div>
+  <div class="header-row">
+    <h2>Prospections</h2>
 
-  <div *ngIf="!isAuthenticated">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="authService.redirectToLogin()"
-    >
-      Log In
-    </button>
+    <ng-container *ngIf="!isAuthenticated">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="authService.redirectToLogin()"
+      >
+        Log In
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="isAuthenticated">
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        Add Prospection
+      </button>
+    </ng-container>
   </div>
 
-  <div *ngIf="isAuthenticated">
-    <button mat-raised-button color="primary" (click)="openDialog()">
-      Add Prospection
-    </button>
+  <div *ngIf="error" class="error">{{ error }}</div>
 
+  <div *ngIf="isAuthenticated">
     <table mat-table [dataSource]="prospections" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -45,14 +51,14 @@
         <td mat-cell *matCellDef="let prospection">
           <button
             mat-icon-button
-            color="primary"
+            class="icon-edit"
             (click)="openDialog(prospection)"
           >
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
-            color="warn"
+            class="icon-delete"
             (click)="deleteProspection(prospection.id)"
           >
             <mat-icon>delete</mat-icon>

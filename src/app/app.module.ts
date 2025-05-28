@@ -36,6 +36,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { LogoutFrontchannelComponent } from './logout-frontchannel/logout-frontchannel.component';
 
 @NgModule({
   providers: [
@@ -57,6 +58,7 @@ import { LoginComponent } from './login/login.component';
     ProspectDialogComponent,
     ProspectionDialogComponent,
     LoginComponent,
+    LogoutFrontchannelComponent,
   ],
   imports: [
     HttpClientXsrfModule.withOptions({

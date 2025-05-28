@@ -2,11 +2,19 @@
   <span>Sphynx</span>
   <span class="spacer"></span>
   <div class="user-info" *ngIf="isAuthenticated$ | async; else loginButton">
-    <span *ngIf="user$ | async as user">Welcome, {{ user }}</span>
-    <button mat-button (click)="logout()">Logout</button>
+    <mat-icon class="user-icon">account_circle</mat-icon>
+    <span class="welcome-text">
+      Welcome,
+      {{
+        (user$ | async)?.name ||
+          (user$ | async)?.username ||
+          (user$ | async)?.email
+      }}
+    </span>
+    <button mat-stroked-button (click)="logout()">Logout</button>
   </div>
   <ng-template #loginButton>
-    <button mat-button (click)="login()">Login</button>
+    <button mat-stroked-button (click)="login()">Login</button>
   </ng-template>
 </mat-toolbar>
 

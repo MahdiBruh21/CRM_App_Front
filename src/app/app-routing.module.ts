@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProspectComponent } from './prospect/prospect.component';
 import { ProspectionComponent } from './prospection/prospection.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutFrontchannelComponent } from './logout-frontchannel/logout-frontchannel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/customers', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'auth-callback', component: LoginComponent }, // For OAuth callback
   { path: '**', redirectTo: '/customers' }, // Catch-all route
+  { path: 'logout-frontchannel', component: LogoutFrontchannelComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

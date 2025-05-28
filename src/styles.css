@@ -1,7 +1,264 @@
+/* ==================== */
+/* Light Theme with #FEAF00 Primary */
+/* ==================== */
+:root {
+  /* Primary Colors */
+  --md-sys-color-primary: #feaf00;
+  --md-sys-color-surface-tint: #ffc107;
+  --md-sys-color-on-primary: #000000;
+  --md-sys-color-primary-container: #ffe082;
+  --md-sys-color-on-primary-container: #212121;
+  --md-sys-color-primary-hover: #ffc107;
+
+  /* Secondary Colors */
+  --md-sys-color-secondary: #795548;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #d7ccc8;
+  --md-sys-color-on-secondary-container: #3e2723;
+
+  /* Background/Surface Colors */
+  --md-sys-color-background: #fafafa;
+  --md-sys-color-on-background: #212121;
+  --md-sys-color-surface: #f4e6d4;
+  --md-sys-color-on-surface: #212121;
+  --md-sys-color-surface-variant: #f5f5f5;
+  --md-sys-color-on-surface-variant: #424242;
+
+  /* Error Colors */
+  --md-sys-color-error: #d32f2f;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffcdd2;
+
+  /* Navbar/Sidenav Colors */
+  --md-sys-color-navbar: var(--md-sys-color-primary);
+  --md-sys-color-sidenav: var(--md-sys-color-surface-variant);
+  --md-sys-color-active-item: rgba(254, 175, 0, 0.1);
+
+  /* Dialog Colors */
+  --md-sys-color-dialog: var(--md-sys-color-surface);
+  --md-sys-color-dialog-title: var(--md-sys-color-on-surface);
+
+  /* Outline Colors */
+  --md-sys-color-outline: #bdbdbd;
+  --md-sys-color-outline-variant: #e0e0e0;
+}
+
+/* ==================== */
+/* Global Styles */
+/* ==================== */
 body {
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* ==================== */
+/* Toolbar/Navbar */
+/* ==================== */
+mat-toolbar {
+  background-color: var(--md-sys-color-primary) !important;
+  color: var(--md-sys-color-on-primary) !important;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 64px;
+  padding: 0 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: 8px;
+}
+
+/* ==================== */
+/* Sidenav */
+/* ==================== */
+mat-sidenav-container {
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}
+
+mat-sidenav {
+  width: 240px;
+  padding: 16px 0;
+  background-color: var(--md-sys-color-sidenav) !important;
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+}
+
+mat-sidenav-content {
+  padding: 24px;
+  background-color: var(--md-sys-color-background);
+}
+
+mat-nav-list {
+  padding-top: 8px;
+}
+
+mat-nav-list a {
+  color: var(--md-sys-color-on-surface-variant) !important;
+  margin: 4px 8px;
+  border-radius: 4px;
+  padding: 12px 16px !important;
+}
+
+mat-nav-list a:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.active {
+  background-color: var(--md-sys-color-active-item) !important;
+  font-weight: bold;
+  color: var(--md-sys-color-primary) !important;
+}
+
+/* ==================== */
+/* Buttons */
+/* ==================== */
+button {
+  margin: 8px;
+}
+
+.mat-mdc-raised-button {
+  min-width: 120px;
+  padding: 0 16px;
+  margin: 8px;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background-color: var(--md-sys-color-primary) !important;
+  color: var(--md-sys-color-on-primary) !important;
+  border-radius: 4px;
+}
+
+.mat-mdc-raised-button.mat-primary:hover {
+  background-color: var(--md-sys-color-primary-hover) !important;
+}
+
+.mat-mdc-button {
+  padding: 0 16px;
+}
+
+.mat-mdc-icon-button {
+  margin: 0 4px;
+}
+
+/* ==================== */
+/* Tables */
+/* ==================== */
+.table-container {
+  background-color: var(--md-sys-color-surface);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  margin-top: 16px;
+}
+
+.mat-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+.mat-header-cell {
+  padding: 16px;
+  font-weight: 500;
+}
+
+.mat-cell {
+  padding: 12px 16px;
+}
+
+/* ==================== */
+/* Dialogs */
+/* ==================== */
+.mat-mdc-dialog-container {
+  padding: 24px !important;
+}
+
+.mat-mdc-dialog-title {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.mat-mdc-dialog-content {
+  padding: 16px 0 !important;
+}
+
+.mat-mdc-dialog-actions {
+  padding-top: 16px !important;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ==================== */
+/* Form Fields */
+/* ==================== */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-mdc-form-field {
+  margin-bottom: 16px;
+}
+
+/* ==================== */
+/* Utility Classes */
+/* ==================== */
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}
+
+.padding-16 {
+  padding: 16px;
+}
+
+.text-primary {
+  color: var(--md-sys-color-primary) !important;
+}
+/* ==================== */
+/* Custom Button Colors */
+/* ==================== */
+/* Edit Icon - Maroon */
+.icon-edit mat-icon {
+  color: #6d4c41; /* Deep brown/maroon */
+}
+
+/* Delete Icon - Reddish hue */
+.icon-delete mat-icon {
+  color: #8f1f1f; /* Rich red */
+}
+a {
+  color: #3f51b5; /* Material Indigo 500, matches Angular Material primary */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  min-height: 40px; /* Ensures a baseline height */
+}
+
+.header-placeholder {
+  width: 120px; /* Same approximate width as a button */
+  height: 36px; /* Same height as a Material button */
+}

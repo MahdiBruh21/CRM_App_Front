@@ -1,21 +1,27 @@
 <div class="table-container">
-  <div *ngIf="error" class="error">{{ error }}</div>
+  <div class="header-row">
+    <h2>Prospects</h2>
 
-  <div *ngIf="!isAuthenticated">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="authService.redirectToLogin()"
-    >
-      Log In
-    </button>
+    <ng-container *ngIf="!isAuthenticated">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="authService.redirectToLogin()"
+      >
+        Log In
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="isAuthenticated">
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        Add Prospect
+      </button>
+    </ng-container>
   </div>
 
-  <div *ngIf="isAuthenticated">
-    <button mat-raised-button color="primary" (click)="openDialog()">
-      Add Prospect
-    </button>
+  <div *ngIf="error" class="error">{{ error }}</div>
 
+  <div *ngIf="isAuthenticated">
     <table mat-table [dataSource]="prospects" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -33,9 +39,9 @@
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
         <td mat-cell *matCellDef="let prospect">
-          <a *ngIf="prospect.email" href="mailto:{{ prospect.email }}">{{
-            prospect.email
-          }}</a>
+          <a *ngIf="prospect.email" href="mailto:{{ prospect.email }}">
+            {{ prospect.email }}
+          </a>
           <span *ngIf="!prospect.email">N/A</span>
         </td>
       </ng-container>
@@ -62,14 +68,14 @@
         <td mat-cell *matCellDef="let prospect">
           <button
             mat-icon-button
-            color="primary"
+            class="icon-edit"
             (click)="openDialog(prospect)"
           >
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
-            color="warn"
+            class="icon-delete"
             (click)="deleteProspect(prospect.id)"
           >
             <mat-icon>delete</mat-icon>
