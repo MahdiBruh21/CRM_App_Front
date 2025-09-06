@@ -28,6 +28,19 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label for="phoneNumberInput">Phone Number</mat-label>
+      <input
+        matInput
+        id="phoneNumberInput"
+        formControlName="phoneNumber"
+        required
+      />
+      <mat-error *ngIf="prospectForm.get('phoneNumber')?.hasError('required')">
+        Phone Number is required
+      </mat-error>
+    </mat-form-field>
+
     <!-- Status Field -->
     <mat-form-field appearance="fill">
       <mat-label for="statusSelect">Status</mat-label>

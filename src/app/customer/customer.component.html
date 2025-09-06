@@ -41,11 +41,22 @@
           <span *ngIf="!customer.email">N/A</span>
         </td>
       </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let customer">{{ customer.address }}</td>
+      </ng-container>
 
       <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef>Phone</th>
         <td mat-cell *matCellDef="let customer">
           {{ customer.phone || "N/A" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerType">
+        <th mat-header-cell *matHeaderCellDef>Customer Type</th>
+        <td mat-cell *matCellDef="let customer">
+          {{ customer.customerType || "N/A" }}
         </td>
       </ng-container>
 

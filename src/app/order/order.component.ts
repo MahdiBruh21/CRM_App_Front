@@ -25,6 +25,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     'id',
     'customer',
     'orderDate',
+    'price',
     'status',
     'actions',
   ];

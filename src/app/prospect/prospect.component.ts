@@ -23,6 +23,7 @@ export class ProspectComponent implements OnInit, AfterViewInit {
     'id',
     'name',
     'email',
+    'phoneNumber',
     'prospectStatus',
     'prospectionType',
     'actions',
@@ -90,6 +91,7 @@ export class ProspectComponent implements OnInit, AfterViewInit {
             .update(prospect.id, result)
             .pipe(
               catchError((err) => {
+                console.error('Update error:', err); // ADD THIS
                 this.error = 'Failed to update prospect.';
                 return of(null);
               })

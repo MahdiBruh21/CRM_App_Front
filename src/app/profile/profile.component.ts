@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     'customer',
     'facebookLink',
     'instagramLink',
+    'whatsappLink',
     'actions',
   ];
   profiles: MatTableDataSource<Profile> = new MatTableDataSource<Profile>([]);

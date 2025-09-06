@@ -19,7 +19,15 @@ import { of } from 'rxjs';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'email',
+    'address',
+    'phone',
+    'customerType',
+    'actions',
+  ];
   customers: MatTableDataSource<Customer> = new MatTableDataSource<Customer>(
     []
   );

@@ -20,6 +20,7 @@ export class ProfileDialogComponent {
       id: [data.profile.id],
       facebookLink: [data.profile.facebookLink || ''],
       instagramLink: [data.profile.instagramLink || ''],
+      whatsappLink: [data.profile.whatsappLink || ''],
     });
   }
 

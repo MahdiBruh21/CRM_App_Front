@@ -24,7 +24,7 @@ export class ProspectionComponent implements OnInit, AfterViewInit {
     'id',
     'prospect',
     'prospectionStatus',
-
+    'prospectionDetails',
     'actions',
   ];
   prospections: MatTableDataSource<Prospection> =

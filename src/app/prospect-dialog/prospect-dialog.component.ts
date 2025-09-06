@@ -20,6 +20,7 @@ export class ProspectDialogComponent {
     this.prospectForm = this.fb.group({
       id: [prospect.id || null],
       name: [prospect.name || '', Validators.required],
+      phoneNumber: [prospect.phoneNumber || '', Validators.required],
       email: [prospect.email || '', [Validators.required, Validators.email]],
       prospectStatus: [prospect.prospectStatus || 'NEW', Validators.required],
       prospectionType: [
